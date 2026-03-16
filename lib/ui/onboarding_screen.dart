@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mst_test/data/onboarding_prefs.dart';
 import 'package:mst_test/domain/onboarding.dart';
 import 'package:mst_test/main.dart';
+import 'package:mst_test/ui/main_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
-  
   @override
   State<StatefulWidget> createState() => _State();
 }
@@ -24,7 +24,10 @@ class _State extends State<OnboardingScreen> {
           Padding(
             padding: const EdgeInsetsGeometry.all(32),
             child: ElevatedButton(
-              onPressed: onboarding.complete,
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MainScreen.route);
+                onboarding.complete();
+              },
               child: Text("Continue"),
             ),
           ),

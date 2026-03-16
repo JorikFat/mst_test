@@ -5,7 +5,7 @@ class Onboarding {
 
   Onboarding(this.storage);
 
-  bool get onboardingComplete => storage.isCompleted;
+  bool get isComplete => storage.isCompleted;
 
   void complete() => storage.isCompleted = true;
 }

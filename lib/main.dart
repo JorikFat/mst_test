@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mst_test/data/onboarding_prefs.dart';
 import 'package:mst_test/domain/onboarding.dart';
+import 'package:mst_test/ui/main_screen.dart';
 import 'package:mst_test/ui/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: OnboardingScreen(),
+      home: !onboarding.isComplete ? OnboardingScreen() : MainScreen()
     );
   }
 }
