@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mst_test/domain/onboarding.dart';
 import 'package:mst_test/main.dart';
 import 'package:mst_test/ui/main_screen.dart';
+import 'package:mst_test/ui/paywall_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -24,7 +25,8 @@ class _State extends State<OnboardingScreen> {
             padding: const EdgeInsetsGeometry.all(32),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MainScreen.route);
+                final nextRoute = purchasePrefs.getSubscription() == null ? PaywallScreen.route : MainScreen.route;
+                Navigator.of(context).pushReplacement(nextRoute);
                 onboarding.complete();
               },
               child: Text("Продолжить"),
