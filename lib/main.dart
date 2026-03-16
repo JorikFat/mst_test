@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mst_test/data/onboarding_prefs.dart';
+import 'package:mst_test/domain/onboarding.dart';
+import 'package:mst_test/ui/onboarding_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+late final SharedPreferences prefs;
+late final Onboarding onboarding;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+  onboarding = Onboarding(OnboardingPrefs(prefs));
   runApp(const MyApp());
 }
 
@@ -14,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: OnboardingScreen(),
     );
   }
 }
