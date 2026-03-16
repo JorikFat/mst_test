@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mst_test/data/onboarding_prefs.dart';
 import 'package:mst_test/domain/onboarding.dart';
 import 'package:mst_test/main.dart';
 import 'package:mst_test/ui/main_screen.dart';
@@ -12,7 +11,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _State extends State<OnboardingScreen> {
-  final Onboarding onboarding = Onboarding(OnboardingPrefs(prefs));
+  final Onboarding onboarding = Onboarding(onboardingPrefs);
 
   @override
   Widget build(BuildContext context) {

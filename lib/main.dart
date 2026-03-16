@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mst_test/data/onboarding_prefs.dart';
-import 'package:mst_test/domain/onboarding.dart';
+import 'package:mst_test/data/purchase_prefs.dart';
 import 'package:mst_test/ui/main_screen.dart';
 import 'package:mst_test/ui/onboarding_screen.dart';
+import 'package:mst_test/ui/paywall_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-late final SharedPreferences prefs;
-late final Onboarding onboarding;
+late final OnboardingPrefs onboardingPrefs;
+late final PurchasePrefs purchasePrefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
-  onboarding = Onboarding(OnboardingPrefs(prefs));
+  final prefs = await SharedPreferences.getInstance();
+  onboardingPrefs = OnboardingPrefs(prefs);
+  purchasePrefs = PurchasePrefs(prefs);
   runApp(const MyApp());
 }
 
@@ -22,10 +24,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: !onboarding.isComplete ? OnboardingScreen() : MainScreen()
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      home: !onboardingPrefs.isCompleted
+          ? OnboardingScreen()
+          : purchasePrefs.getSubscription() == null
+          ? PaywallScreen()
+          : MainScreen(),
     );
   }
 }

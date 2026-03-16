@@ -7,7 +7,6 @@ class OnboardingPrefs implements OnboardingStorage {
 
   OnboardingPrefs(this._prefs);
 
-  @override
   bool get isCompleted => _prefs.getBool(_key) ?? false;
 
   @override
