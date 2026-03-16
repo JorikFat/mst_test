@@ -76,7 +76,7 @@ class _State extends State<PaywallScreen> {
                             context,
                           ).pushReplacement(MainScreen.route);
                         },
-                  child: Text("Оформить подписку"),
+                  child: Text("Продолжить"),
                 ),
               ),
             ],

@@ -27,7 +27,7 @@ class _State extends State<OnboardingScreen> {
                 Navigator.of(context).pushReplacement(MainScreen.route);
                 onboarding.complete();
               },
-              child: Text("Continue"),
+              child: Text("Продолжить"),
             ),
           ),
         ],
